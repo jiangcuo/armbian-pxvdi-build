@@ -127,7 +127,11 @@ function cli_handle_docker() {
 function docker_cli_prepare() {
 	# @TODO: Make sure we can access docker, on Linux; gotta be part of 'docker' group: grep -q "$(whoami)" <(getent group docker)
 
-	declare -g DOCKER_ARMBIAN_INITIAL_IMAGE_TAG="armbian.local.only/armbian-build:initial"
+	# Unique tag per build to avoid collisions when multiple runners build in parallel on same host
+	# Uses short UUID (8 chars) to keep tag length manageable while ensuring uniqueness
+	declare build_suffix="${ARMBIAN_BUILD_UUID:-$(uuidgen)}"
+	build_suffix="${build_suffix:0:8}" # First 8 chars of UUID is sufficient for uniqueness
+	declare -g DOCKER_ARMBIAN_INITIAL_IMAGE_TAG="armbian.local.only/armbian-build:${build_suffix}"
 	# declare -g DOCKER_ARMBIAN_BASE_IMAGE="${DOCKER_ARMBIAN_BASE_IMAGE:-"debian:trixie"}"
 	# declare -g DOCKER_ARMBIAN_BASE_IMAGE="${DOCKER_ARMBIAN_BASE_IMAGE:-"debian:bookworm"}"
 	# declare -g DOCKER_ARMBIAN_BASE_IMAGE="${DOCKER_ARMBIAN_BASE_IMAGE:-"debian:sid"}"
