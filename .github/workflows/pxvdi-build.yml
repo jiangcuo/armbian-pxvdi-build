@@ -17,7 +17,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 120
 
     steps:
@@ -38,7 +38,6 @@ jobs:
               BUILD_MINIMAL=yes \
               BUILD_DESKTOP=no \
               KERNEL_CONFIGURE=no \
-              DOWNLOAD_MIRROR=china \
               SHARE_LOG=yes
 
       - uses: actions/upload-artifact@v4
