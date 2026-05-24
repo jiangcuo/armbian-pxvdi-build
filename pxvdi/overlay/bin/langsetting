@@ -1,0 +1,32 @@
+#!/bin/bash
+lang=$1
+
+en="en_US.UTF-8"
+zh="zh_CN.UTF-8"
+ja="ja_JP.UTF-8"
+
+setlang(){
+        echo "LANG=$1" > /etc/default/locale
+        echo "LC_ALL=$1" >> /etc/default/locale
+        cp /etc/default/locale ~/.locale
+}
+
+setmenu(){
+        cp /etc/xdg/openbox/menu-$1.xml /etc/xdg/openbox/menu.xml
+}
+
+
+if [ "$lang" == "en" ];then
+        setlang en_US.UTF-8
+        setmenu en
+elif [ "$lang" == "zh" ];then
+        setlang zh_CN.UTF-8
+        setmenu zh
+elif [ "$lang" == "ja" ];then
+        setlang ja_JP.UTF8
+        setmenu ja
+elif [ "$lang" == "restore" ];then
+        if [ -f ~/.locale ];then
+                cp ~/.locale /etc/default/locale
+        fi
+fi

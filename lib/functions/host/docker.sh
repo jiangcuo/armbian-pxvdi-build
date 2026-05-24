@@ -565,7 +565,8 @@ function docker_cli_prepare_launch() {
 	loop_over_armbian_mountpoints prepare_docker_args_for_mountpoint
 
 	# @TODO: auto-compute this list; just get the dirs and filter some out?
-	for MOUNT_DIR in "lib" "config" "extensions" "packages" "patch" "tools" "userpatches"; do
+	# PXVDI: 用 pxvdi/ 替代 userpatches/，这样我们的定制目录可以进 git
+	for MOUNT_DIR in "lib" "config" "extensions" "packages" "patch" "tools" "pxvdi"; do
 		mkdir -p "${SRC}/${MOUNT_DIR}"
 		DOCKER_ARGS+=("--mount" "type=bind,source=${SRC}/${MOUNT_DIR},target=${DOCKER_ARMBIAN_TARGET_PATH}/${MOUNT_DIR}")
 	done
@@ -633,7 +634,7 @@ function docker_cli_launch() {
 		run_host_command_logged find "${SRC}/config" -name ".DS_Store" -type f -delete "||" true
 		run_host_command_logged find "${SRC}/packages" -name ".DS_Store" -type f -delete "||" true
 		run_host_command_logged find "${SRC}/patch" -name ".DS_Store" -type f -delete "||" true
-		run_host_command_logged find "${SRC}/userpatches" -name ".DS_Store" -type f -delete "||" true
+		run_host_command_logged find "${SRC}/pxvdi" -name ".DS_Store" -type f -delete "||" true
 	fi
 
 	# This check is performed in order to set up the host so that it has a loop device, as calling losetup inside of

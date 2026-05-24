@@ -116,7 +116,8 @@ function cli_entrypoint() {
 	# Also form here, UUID will be generated, output created, logging enabled, etc.
 
 	# Init basic dirs.
-	declare -g -r DEST="${SRC}/output" USERPATCHES_PATH="${SRC}"/userpatches # DEST is the main output dir, and USERPATCHES_PATH is the userpatches dir. read-only.
+	# PXVDI: 把定制目录从 userpatches（被上游 .gitignore 排除）改成 pxvdi（git 跟踪）
+	declare -g -r DEST="${SRC}/output" USERPATCHES_PATH="${SRC}"/pxvdi # DEST is the main output dir, and USERPATCHES_PATH is the userpatches dir. read-only.
 	mkdir -p "${DEST}" "${USERPATCHES_PATH}"                                 # Create output and userpatches directory if not already there
 	display_alert "Output directory created! DEST:" "${DEST}" "debug"
 

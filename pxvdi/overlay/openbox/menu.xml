@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://openbox.org/
+                file:///usr/share/openbox/menu.xsd">
+
+<menu id="root-menu" label="Openbox 3">
+<separator label="Appcation" />
+  <item label="Open PXVDI">
+    <action name="Execute"><execute>/opt/com.lierfang.pxvdi/pxvdi-thin-client</execute></action>
+  </item>
+  <item label="Termianl">
+    <action name="Execute"><execute>xterm</execute></action>
+  </item>
+<separator label="Setting" />
+  <item label="Network Setting">
+    <action name="Execute"><execute>/usr/bin/nm-connection-editor</execute></action>
+  </item>
+  <item label="Sound Setting">
+    <action name="Execute"><execute>/usr/bin/pavucontrol</execute></action>
+  </item>
+  <item label="Printer Setting">
+    <action name="Execute"><execute>/usr/bin/system-config-printer</execute></action>
+  </item>
+<menu id="setting2" label="Screen Setting">
+  <item label="1920x1080@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 1920x1080</execute></action>
+  </item>
+  <item label="2560x1440@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 2560x1440</execute></action>
+  </item>
+  <item label="3840x2160@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 3840x2160</execute></action>
+  </item>
+</menu>
+<menu id="setting3" label="Lang Setting">
+  <item label="English">
+    <action name="Execute"><execute>/usr/bin/langsetting en</execute></action>
+  </item>
+  <item label="日本語">
+    <action name="Execute"><execute>/usr/bin/langsetting ja</execute></action>
+  </item>
+  <item label="简体中文">
+    <action name="Execute"><execute>/usr/bin/langsetting zh</execute></action>
+  </item>
+</menu>
+<menu id="setting4" label="Other">
+  <item label="Restart Desktop">
+    <action name="Execute"><execute>systemctl restart lightdm</execute></action>
+  </item>
+</menu>
+</openbox_menu>

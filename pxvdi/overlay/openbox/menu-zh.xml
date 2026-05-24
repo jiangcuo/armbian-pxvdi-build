@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://openbox.org/
+                file:///usr/share/openbox/menu.xsd">
+
+<menu id="root-menu" label="Openbox 3">
+<separator label="应用" />
+  <item label="打开PXVDI云桌面">
+    <action name="Execute"><execute>/opt/com.lierfang.pxvdi/pxvdi-thin-client</execute></action>
+  </item>
+  <item label="打开终端">
+    <action name="Execute"><execute>xterm</execute></action>
+  </item>
+<separator label="设置" />
+  <item label="设置网络">
+    <action name="Execute"><execute>/usr/bin/nm-connection-editor</execute></action>
+  </item>
+  <item label="设置声音">
+    <action name="Execute"><execute>/usr/bin/pavucontrol</execute></action>
+  </item>
+  <item label="设置打印机">
+    <action name="Execute"><execute>/usr/bin/system-config-printer</execute></action>
+  </item>
+<menu id="setting2" label="分辨率设置">
+  <item label="设置1920x1080@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 1920x1080</execute></action>
+  </item>
+  <item label="设置2560x1440@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 2560x1440</execute></action>
+  </item>
+  <item label="设置3840x2160@60">
+    <action name="Execute"><execute>/usr/bin/screensetting 3840x2160</execute></action>
+  </item>
+</menu>
+<menu id="setting3" label="Lang Setting">
+  <item label="English">
+    <action name="Execute"><execute>/usr/bin/langsetting en</execute></action>
+  </item>
+  <item label="日本語">
+    <action name="Execute"><execute>/usr/bin/langsetting ja</execute></action>
+  </item>
+  <item label="简体中文">
+    <action name="Execute"><execute>/usr/bin/langsetting zh</execute></action>
+  </item>
+</menu>
+<menu id="setting4" label="其他操作">
+  <item label="重启桌面">
+    <action name="Execute"><execute>systemctl restart lightdm</execute></action>
+  </item>
+</menu>
+</openbox_menu>

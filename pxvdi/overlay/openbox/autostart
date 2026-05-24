@@ -1,0 +1,13 @@
+xset -dpms s 0 &
+screensetting &
+pulseaudio -D &
+fcitx5 -d &
+feh --bg-scale /usr/share/bizhi.jpg &
+
+[ -r /etc/default/pxvdi ] && . /etc/default/pxvdi
+
+for i in `seq 1 4`;do
+  if [ $i -lt "4" ] ;then
+    /opt/com.lierfang.pxvdi/pxvdi-thin-client
+  fi
+done

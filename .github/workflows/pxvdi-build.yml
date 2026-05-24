@@ -1,0 +1,49 @@
+name: PXVDI Build Image
+
+# 在 Actions 页面点 "Run workflow" 即可构建
+# 任何 fork 这个仓库的登录用户都能用
+
+on:
+  workflow_dispatch:
+    inputs:
+      board:
+        description: "板子型号 (BOARD)"
+        required: true
+        default: "rock-5b"
+      branch:
+        description: "内核分支 (current / edge / vendor)"
+        required: true
+        default: "current"
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache /usr/local/share/boost
+          sudo apt-get clean
+
+      - name: Build
+        run: |
+          sudo ./compile.sh \
+              BOARD=${{ inputs.board }} \
+              BRANCH=${{ inputs.branch }} \
+              RELEASE=trixie \
+              BUILD_MINIMAL=yes \
+              BUILD_DESKTOP=no \
+              KERNEL_CONFIGURE=no \
+              DOWNLOAD_MIRROR=china \
+              SHARE_LOG=yes
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pxvdi-${{ inputs.board }}-${{ inputs.branch }}
+          path: output/images/*.img*
+          retention-days: 14
+          if-no-files-found: error
