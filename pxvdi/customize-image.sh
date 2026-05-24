@@ -123,12 +123,6 @@ INPUT_METHOD=fcitx
 EOF
 }
 
-# ---- 5. screen_tool ----
-screen_tool() {
-    log "screen_tool"
-    install -D -m 0755 "$OVERLAY/bin/screensetting" /usr/bin/screensetting
-}
-
 # ---- 6. pxvdi deb (apt 仓库) ----
 pxvdi_deb() {
     log "pxvdi_deb"
@@ -295,7 +289,6 @@ Main() {
     user_set
     openbox_config
     lightdm_config
-    screen_tool
     pxvdi_deb
     pxvdi_env
     pxvdi_config
